@@ -9,9 +9,9 @@ const questions = [
     answers: ["Python", "JavaScript", "C++", "Ruby"],
     correct: 1
     }
-   ];
+   ];  // Create an array of questions, and answers 
    let index = 0;
-
+       //Set the index at 0 to begin for the first question (This represents the questions index in the array)
    const quizQuestion = document.getElementById("question-text");
    const answerButton1 = document.getElementById("button-1");
    const answerButton2 = document.getElementById("button-2");
@@ -19,7 +19,7 @@ const questions = [
    const answerButton4 = document.getElementById("button-4");
    const quizFeedback = document.getElementById("feedback");
    const nextQButton = document.getElementById("next-question");
-
+      //Cache buttons and elements as variables 
 
    //Question: questions.question
    //answers: questions.answers
@@ -48,11 +48,15 @@ const questions = [
 
    function handleAnswerSelection(event){
         const selectButton = event.target;
+        const selectedAnswer = selectButton
 
-        isCorrect = selectButton === questions[index].answers[questions.correct];
 
-        feedback.textContent = isCorrect ? "Correct!" : "Wrong answer.";
-            
+      if (selectButton === questions[index].answers[questions.correct]){
+            selectedAnswer.isCorrect 
+             feedback.textContent = "Correct!"
+      }else{
+        feedback.textContent = "Wrong answer.";
+      } 
         answerButton1.disabled = true;
         answerButton2.disabled = true;
         answerButton3.disabled = true;
@@ -67,14 +71,14 @@ const questions = [
    // if a button is clicked, nextquestion button is availble and when clicked shold navigate to
    //next quesrion with displayQuestion()
    function nextQuestion() {
-    index++; 
-   if (index < questions.length){
-     const nextQ = questions[index]
-     displayQuestion(nextQ.question, nextQ.answers)
+    index++;                    // iterates to the next question
+   if (index < questions.length){ // Are there more questions to display or not?
+     const nextQ = questions[index] //represents the next question if it exists
+     displayQuestion(nextQ.question, nextQ.answers) // if it does exist, display it 
    }else{
-     quizQuestion.textContent = "Quiz Complete!"
-     feedback.textContent= ""
-     nextQButton.style.display = "none"
+     quizQuestion.textContent = "Quiz Complete!" // if not, let the user know that the quiz is over. 
+     feedback.textContent= ""                    //no more answers so no feedback needed 
+     nextQButton.style.display = "none"          //no more questions so hide next question button 
    }
 }
 
@@ -88,15 +92,11 @@ const questions = [
    nextQButton.addEventListener("click", nextQuestion);
 
    //add arguments
-  const currentQuestion = questions[index];
-
-
-
-    
+  const currentQuestion = questions[index]; // represents argument for current question. Index set at 0 on line 13 to initialize 
 
    //displayQuestion(-- add arguments here);
 
-   displayQuestion(currentQuestion.question,currentQuestion.answers)
+   displayQuestion(currentQuestion.question,currentQuestion.answers) // display the current question and the current questions answers 
 
 
 
